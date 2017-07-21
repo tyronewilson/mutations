@@ -67,7 +67,7 @@ describe "Mutations::FloatFilter" do
   end
 
   it "considers empty strings to be empty" do
-    f = Mutations::FloatFilter.new
+    f = Mutations::FloatFilter.new(empty_is_nil: false)
     filtered, errors = f.filter("")
     assert_equal :empty, errors
   end

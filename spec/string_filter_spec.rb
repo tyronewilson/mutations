@@ -16,7 +16,7 @@ describe "Mutations::StringFilter" do
     assert_equal nil, errors
   end
 
-  it "allows fixnums" do
+  it "allows integers" do
     sf = Mutations::StringFilter.new
     filtered, errors = sf.filter(1)
     assert_equal "1", filtered
@@ -160,7 +160,7 @@ describe "Mutations::StringFilter" do
   it "converts bigdecimals to strings" do
     sf = Mutations::StringFilter.new(:strict => false)
     filtered, errors = sf.filter(BigDecimal.new("0.0001"))
-    assert_equal "0.1E-3", filtered
+    assert_equal "0.1e-3", filtered
     assert_equal nil, errors
   end
 
