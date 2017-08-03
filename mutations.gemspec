@@ -12,7 +12,8 @@ Gem::Specification.new do |s|
   s.test_files = `git ls-files test`.split("\n")
   s.require_path = 'lib'
 
-  s.add_dependency "activesupport"
+  s.add_dependency "activesupport", '~> 4'
   s.add_development_dependency 'minitest', '~> 4'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'pry-byebug'
 end
