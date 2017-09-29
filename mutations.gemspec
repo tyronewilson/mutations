@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
 
   s.add_dependency "activesupport", '~> 5'
+  s.add_dependency "awesome_print"
+  
   s.add_development_dependency 'minitest', '~> 5'
   s.add_development_dependency 'rake', "~> 12"
   s.add_development_dependency 'pry-byebug'
