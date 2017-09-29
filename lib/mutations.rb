@@ -1,5 +1,6 @@
 require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/core_ext/string/inflections'
+require 'active_support/concern'
 require 'date'
 require 'time'
 require 'bigdecimal'
@@ -22,6 +23,7 @@ require 'mutations/array_filter'
 require 'mutations/hash_filter'
 require 'mutations/outcome'
 require 'mutations/command'
+require 'mutations/resource_validation'
 
 module Mutations
   class << self
