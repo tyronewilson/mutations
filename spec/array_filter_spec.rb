@@ -7,7 +7,7 @@ describe "Mutations::ArrayFilter" do
     f = Mutations::ArrayFilter.new(:arr)
     filtered, errors = f.filter([1])
     assert_equal [1], filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "considers non-arrays to be invalid" do
@@ -21,7 +21,7 @@ describe "Mutations::ArrayFilter" do
   it "considers nil to be invalid" do
     f = Mutations::ArrayFilter.new(:arr, :nils => false)
     filtered, errors = f.filter(nil)
-    assert_equal nil, filtered
+    assert_nil filtered
     assert_equal :nils, errors
   end
 
@@ -29,20 +29,20 @@ describe "Mutations::ArrayFilter" do
     f = Mutations::ArrayFilter.new(:arr, :nils => true)
     _filtered, errors = f.filter(nil)
     _filtered, errors = f.filter(nil)
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "lets you specify a class, and has valid elements" do
     f = Mutations::ArrayFilter.new(:arr, :class => Integer)
     filtered, errors = f.filter([1,2,3])
-    assert_equal nil, errors
+    assert_nil errors
     assert_equal [1,2,3], filtered
   end
 
   it "lets you specify a class as a string, and has valid elements" do
     f = Mutations::ArrayFilter.new(:arr, :class => 'Integer')
     filtered, errors = f.filter([1,2,3])
-    assert_equal nil, errors
+    assert_nil errors
     assert_equal [1,2,3], filtered
   end
 
@@ -123,7 +123,7 @@ describe "Mutations::ArrayFilter" do
 
     filtered, errors = f.filter([true, false, "1"])
     assert_equal [true, false, true], filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "lets you pass model in arrays" do
@@ -131,7 +131,7 @@ describe "Mutations::ArrayFilter" do
 
     filtered, errors = f.filter(["hey"])
     assert_equal ["hey"], filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "lets you pass hashes in arrays" do
@@ -151,8 +151,8 @@ describe "Mutations::ArrayFilter" do
     filtered, errors = f.filter([{:foo => "f", :bar => 3, :baz => true}, {:foo => "f", :bar => 3}, {:foo => "f"}])
     assert_equal [{:foo=>"f", :bar=>3, :baz=>true}, {:foo=>"f", :bar=>3}, {:foo=>"f"}], filtered
 
-    assert_equal nil, errors[0]
-    assert_equal nil, errors[1]
+    assert_nil errors[0]
+    assert_nil errors[1]
     assert_equal ({"bar"=>:required}), errors[2].symbolic
   end
 
@@ -165,7 +165,7 @@ describe "Mutations::ArrayFilter" do
 
     filtered, errors = f.filter([["h", "e"], ["l"], [], ["lo"]])
     assert_equal filtered, [["h", "e"], ["l"], [], ["lo"]]
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "handles errors for arrays of arrays" do
@@ -187,6 +187,6 @@ describe "Mutations::ArrayFilter" do
     end
     filtered, errors = f.filter([1, "2", "three", "4", 5, [6]])
     assert_equal [1,2,4,5], filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 end

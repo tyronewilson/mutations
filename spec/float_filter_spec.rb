@@ -6,42 +6,42 @@ describe "Mutations::FloatFilter" do
     f = Mutations::FloatFilter.new
     filtered, errors = f.filter(3.1415926)
     assert_equal 3.1415926, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "allows strings that start with a digit" do
     f = Mutations::FloatFilter.new
     filtered, errors = f.filter("3")
     assert_equal 3.0, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "allows string representation of float" do
     f = Mutations::FloatFilter.new
     filtered, errors = f.filter("3.14")
     assert_equal 3.14, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "allows string representation of float without a number before dot" do
     f = Mutations::FloatFilter.new
     filtered, errors = f.filter(".14")
     assert_equal 0.14, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "allows negative strings" do
     f = Mutations::FloatFilter.new
     filtered, errors = f.filter("-.14")
     assert_equal(-0.14, filtered)
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "allows strings with a positive sign" do
     f = Mutations::FloatFilter.new
     filtered, errors = f.filter("+.14")
     assert_equal 0.14, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "doesnt't allow other strings, nor does it allow random objects or symbols" do
@@ -55,15 +55,15 @@ describe "Mutations::FloatFilter" do
   it "considers nil to be invalid" do
     f = Mutations::FloatFilter.new(:nils => false)
     filtered, errors = f.filter(nil)
-    assert_equal nil, filtered
+    assert_nil filtered
     assert_equal :nils, errors
   end
 
   it "considers nil to be valid" do
     f = Mutations::FloatFilter.new(:nils => true)
     filtered, errors = f.filter(nil)
-    assert_equal nil, filtered
-    assert_equal nil, errors
+    assert_nil filtered
+    assert_nil errors
   end
 
   it "considers empty strings to be empty" do
@@ -75,8 +75,8 @@ describe "Mutations::FloatFilter" do
   it "it allows empty strings as nil" do
     f = Mutations::FloatFilter.new(empty_is_nil: true, nils: true)
     filtered, errors = f.filter("")
-    assert_equal nil, filtered
-    assert_equal nil, errors
+    assert_nil filtered
+    assert_nil errors
   end
 
   it "considers low numbers invalid" do
@@ -90,7 +90,7 @@ describe "Mutations::FloatFilter" do
     f = Mutations::FloatFilter.new(:min => 10)
     filtered, errors = f.filter(31)
     assert_equal 31, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "considers high numbers invalid" do
@@ -104,7 +104,7 @@ describe "Mutations::FloatFilter" do
     f = Mutations::FloatFilter.new(:max => 10)
     filtered, errors = f.filter(3)
     assert_equal 3, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it 'allows BigDecimal as input' do
@@ -112,7 +112,7 @@ describe "Mutations::FloatFilter" do
     value = BigDecimal.new(5)
     filtered, errors = f.filter(value)
     assert_equal 5, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
 end

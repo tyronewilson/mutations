@@ -16,7 +16,7 @@ describe "Mutations::FileFilter" do
       f = Mutations::FileFilter.new
       filtered, errors = f.filter(file)
       assert_equal file, filtered
-      assert_equal nil, errors
+      assert_nil errors
     end
   end
 
@@ -25,7 +25,7 @@ describe "Mutations::FileFilter" do
     f = Mutations::FileFilter.new
     filtered, errors = f.filter(file)
     assert_equal file, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "allows files - tempfile" do
@@ -33,7 +33,7 @@ describe "Mutations::FileFilter" do
     f = Mutations::FileFilter.new
     filtered, errors = f.filter(file)
     assert filtered.is_a?(Tempfile) # NOTE: 1.9.3 and 1.8.7 treat == and eql? differently
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "doesn't allow non-files" do
@@ -50,15 +50,15 @@ describe "Mutations::FileFilter" do
   it "considers nil to be invalid" do
     f = Mutations::FileFilter.new(:nils => false)
     filtered, errors = f.filter(nil)
-    assert_equal nil, filtered
+    assert_nil filtered
     assert_equal :nils, errors
   end
 
   it "considers nil to be valid" do
     f = Mutations::FileFilter.new(:nils => true)
     filtered, errors = f.filter(nil)
-    assert_equal nil, filtered
-    assert_equal nil, errors
+    assert_nil filtered
+    assert_nil errors
   end
   
   it "considers empty strings to be empty" do
@@ -72,7 +72,7 @@ describe "Mutations::FileFilter" do
     f = Mutations::FileFilter.new(:size => 4)
     filtered, errors = f.filter(file)
     assert_equal file, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "shouldn't allow big files" do
@@ -88,7 +88,7 @@ describe "Mutations::FileFilter" do
     f = Mutations::FileFilter.new(:upload => true)
     filtered, errors = f.filter(file)
     assert_equal file, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "should require extra methods if uploaded file: deny" do

@@ -6,7 +6,7 @@ describe "Mutations::DateFilter" do
     f = Mutations::DateFilter.new
     filtered, errors = f.filter(date)
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
   
   it "takes a DateTime object" do
@@ -14,7 +14,7 @@ describe "Mutations::DateFilter" do
     f = Mutations::DateFilter.new
     filtered, errors = f.filter(date)
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
   
   it "takes a Time object and converts it to a date" do
@@ -23,7 +23,7 @@ describe "Mutations::DateFilter" do
     filtered, errors = f.filter(time)
     if time.respond_to?(:to_date) # 1.8.7 doesn't support to_date
       assert_equal time.to_date, filtered
-      assert_equal nil, errors
+      assert_nil errors
     else
       assert_equal :date, errors
     end
@@ -36,7 +36,7 @@ describe "Mutations::DateFilter" do
     filtered, errors = f.filter(date)
 
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "gives errors when the given date is before the after date" do
@@ -45,7 +45,7 @@ describe "Mutations::DateFilter" do
     f = Mutations::DateFilter.new(:after => after_date)
     filtered, errors = f.filter(date)
 
-    assert_equal nil, filtered
+    assert_nil filtered
     assert_equal :after, errors
   end
 
@@ -56,7 +56,7 @@ describe "Mutations::DateFilter" do
     filtered, errors = f.filter(date)
 
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "gives errors when the given date is after the before date" do
@@ -65,7 +65,7 @@ describe "Mutations::DateFilter" do
     f = Mutations::DateFilter.new(:before => before_date)
     filtered, errors = f.filter(date)
 
-    assert_equal nil, filtered
+    assert_nil filtered
     assert_equal :before, errors
   end
 
@@ -77,7 +77,7 @@ describe "Mutations::DateFilter" do
     filtered, errors = f.filter(date)
 
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "should be able to parse a D-M-Y string to a date" do
@@ -87,7 +87,7 @@ describe "Mutations::DateFilter" do
     filtered, errors = f.filter(date_string)
 
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "should be able to parse a Y-M-D string to a date" do
@@ -97,7 +97,7 @@ describe "Mutations::DateFilter" do
     filtered, errors = f.filter(date_string)
 
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "should be able to handle date formatting" do
@@ -107,21 +107,21 @@ describe "Mutations::DateFilter" do
     filtered, errors = f.filter(date_string)
 
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
 
     date_string = "1, 2, 2000"
     f = Mutations::DateFilter.new(:format => '%m, %d, %Y')
     filtered, errors = f.filter(date_string)
 
     assert_equal date, filtered
-    assert_equal nil, errors
+    assert_nil errors
   end
 
   it "considers nil to be invalid" do
     f = Mutations::DateFilter.new
     filtered, errors = f.filter(nil)
 
-    assert_equal nil, filtered
+    assert_nil filtered
     assert_equal :nils, errors
   end
   
@@ -136,8 +136,8 @@ describe "Mutations::DateFilter" do
     f = Mutations::DateFilter.new(:nils => true)
     filtered, errors = f.filter(nil)
 
-    assert_equal nil, filtered
-    assert_equal nil, errors
+    assert_nil filtered
+    assert_nil errors
   end
 
   it "doesn't allow non-existing dates" do
@@ -145,7 +145,7 @@ describe "Mutations::DateFilter" do
     f = Mutations::DateFilter.new
     filtered, errors = f.filter(date_string)
 
-    assert_equal nil, filtered
+    assert_nil filtered
     assert_equal :date, errors
   end
 end
