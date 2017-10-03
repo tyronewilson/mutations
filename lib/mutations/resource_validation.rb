@@ -4,9 +4,9 @@ module Mutations
     EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
     included do
-      def run_resource_validations
+      def run_resource_validations(resource=self.resource)
         unless resource.valid?
-          process_model_errors
+          process_model_errors(resource)
         end
       end
 
